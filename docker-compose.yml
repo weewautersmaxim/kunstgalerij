@@ -4,7 +4,7 @@ services:
   db:
     image: "mcr.microsoft.com/mssql/server"
     environment:
-      SA_PASSWORD: "kunstgalerij"
+      SA_PASSWORD: "<YourNewStrong@Passw0rd>"
       ACCEPT_EULA: "Y"
     ports:
       - 1433:1433
