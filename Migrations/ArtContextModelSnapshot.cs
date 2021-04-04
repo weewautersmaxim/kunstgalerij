@@ -21,9 +21,10 @@ namespace kunstgalerij.Migrations
 
             modelBuilder.Entity("kunstgalerij.Models.Artist", b =>
                 {
-                    b.Property<Guid>("ArtistId")
+                    b.Property<int>("ArtistId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
 
                     b.Property<int>("Age")
                         .HasColumnType("int");
@@ -50,13 +51,23 @@ namespace kunstgalerij.Migrations
                     b.HasData(
                         new
                         {
-                            ArtistId = new Guid("7a1f42df-2323-411f-b77e-78c84b698ecd"),
+                            ArtistId = 1,
                             Age = 37,
                             Birthplace = "The Netherlands",
                             FirstName = "Vincent",
                             Gender = "man",
                             Name = "van Gogh",
                             description = "Vincent Willem van Gogh was een Nederlands kunstschilder. Zijn werk valt onder het postimpressionisme, een kunststroming die het negentiende-eeuwse impressionisme opvolgde. Van Gogh wordt gezien als een van de grootste schilders van de 19e eeuw."
+                        },
+                        new
+                        {
+                            ArtistId = 2,
+                            Age = 92,
+                            Birthplace = "Spain",
+                            FirstName = "Pablo",
+                            Gender = "man",
+                            Name = "Picasso",
+                            description = "He was a draftsman, sculptor and jewelry designer. He was also one of the most famous Spanish painters."
                         });
                 });
 
@@ -66,8 +77,8 @@ namespace kunstgalerij.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("ArtistId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<int>("ArtistId")
+                        .HasColumnType("int");
 
                     b.Property<int>("Price")
                         .HasColumnType("int");
@@ -83,6 +94,32 @@ namespace kunstgalerij.Migrations
                     b.HasIndex("ArtistId");
 
                     b.ToTable("Artworks");
+
+                    b.HasData(
+                        new
+                        {
+                            ArtworkId = new Guid("e3f26988-4107-4f4f-9215-329c7209ba01"),
+                            ArtistId = 1,
+                            Price = 2,
+                            Title = "artwork test",
+                            Year = 1889
+                        },
+                        new
+                        {
+                            ArtworkId = new Guid("2c3607a9-99bf-41ed-b54b-a622537ae7db"),
+                            ArtistId = 1,
+                            Price = 500000,
+                            Title = "artwork test number 2",
+                            Year = 1881
+                        },
+                        new
+                        {
+                            ArtworkId = new Guid("a26caa67-1df1-408b-b5ad-af87f4563757"),
+                            ArtistId = 2,
+                            Price = 8000000,
+                            Title = "artwork test number 3",
+                            Year = 1996
+                        });
                 });
 
             modelBuilder.Entity("kunstgalerij.Models.Category", b =>
@@ -142,30 +179,22 @@ namespace kunstgalerij.Migrations
 
                     b.HasKey("CategoryId", "ArtworkId");
 
-                    b.HasIndex("ArtworkId");
-
                     b.ToTable("CategoryArtworks");
                 });
 
             modelBuilder.Entity("kunstgalerij.Models.Artwork", b =>
                 {
-                    b.HasOne("kunstgalerij.Models.Artist", "Artist")
-                        .WithMany()
+                    b.HasOne("kunstgalerij.Models.Artist", "artist")
+                        .WithMany("artworks")
                         .HasForeignKey("ArtistId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Artist");
+                    b.Navigation("artist");
                 });
 
             modelBuilder.Entity("kunstgalerij.Models.CategoryArtworks", b =>
                 {
-                    b.HasOne("kunstgalerij.Models.Artwork", null)
-                        .WithMany("CategoryArtwork")
-                        .HasForeignKey("ArtworkId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("kunstgalerij.Models.Category", "Category")
                         .WithMany("CategoryArtworks")
                         .HasForeignKey("CategoryId")
@@ -175,9 +204,9 @@ namespace kunstgalerij.Migrations
                     b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("kunstgalerij.Models.Artwork", b =>
+            modelBuilder.Entity("kunstgalerij.Models.Artist", b =>
                 {
-                    b.Navigation("CategoryArtwork");
+                    b.Navigation("artworks");
                 });
 
             modelBuilder.Entity("kunstgalerij.Models.Category", b =>

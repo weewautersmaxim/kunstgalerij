@@ -71,16 +71,50 @@ namespace kunstgalerij.DataContext
                 CategoryId = 6,
                 CategoryName = "portrait"
             });
+             modelBuilder.Entity<Artwork>().HasData(new Artwork()
+            {
+                ArtworkId = Guid.NewGuid(),
+                Title = "artwork test",
+                ArtistId=1,
+                 Year = 1889,
+                Price = 2
+            });
+            modelBuilder.Entity<Artwork>().HasData(new Artwork()
+            {
+                ArtworkId = Guid.NewGuid(),
+                Title = "artwork test number 2",
+                ArtistId=1,
+                Year = 1881,
+                Price = 500000
+            });
+            modelBuilder.Entity<Artwork>().HasData(new Artwork()
+            {
+                ArtworkId = Guid.NewGuid(),
+                Title = "artwork test number 3",
+                ArtistId=2,
+                Year = 1996,
+                Price = 8000000
+            });
 
             modelBuilder.Entity<Artist>().HasData(new Artist()
             {
-                ArtistId = Guid.NewGuid(),
+                ArtistId = 1,
                 Name = "van Gogh",
                 FirstName = "Vincent",
                 Age = 37,
                 Gender = "man",
                 Birthplace = "The Netherlands",
                 description = "Vincent Willem van Gogh was een Nederlands kunstschilder. Zijn werk valt onder het postimpressionisme, een kunststroming die het negentiende-eeuwse impressionisme opvolgde. Van Gogh wordt gezien als een van de grootste schilders van de 19e eeuw."
+            });
+            modelBuilder.Entity<Artist>().HasData(new Artist()
+            {
+                ArtistId = 2,
+                Name = "Picasso",
+                FirstName = "Pablo",
+                Age = 92,
+                Gender = "man",
+                Birthplace = "Spain",
+                description = "He was a draftsman, sculptor and jewelry designer. He was also one of the most famous Spanish painters."
             });
         }
 

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using kunstgalerij.DataContext;
+using kunstgalerij.Repositories;
+using kunstgalerij.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -30,9 +32,13 @@ namespace kunstgalerij
         {
             services.Configure<ConnectionStrings>(Configuration.GetSection("ConnectionStrings"));
 
+            services.AddAutoMapper(typeof(Startup));
             services.AddDbContext<ArtContext>();
 
             services.AddTransient<IArtContext,ArtContext>();
+            services.AddTransient<IArtistRepository,ArtistRepository>();
+            services.AddTransient<IArtistService,ArtistService>();
+
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
