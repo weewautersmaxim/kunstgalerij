@@ -13,12 +13,14 @@ namespace kunstgalerij.Controllers
     public class ArtistController : ControllerBase
     {
         private readonly IArtistService _ArtistService;
+        private readonly IArtworkService _ArtworkService;
         private readonly ILogger<ArtistController> _logger;
 
-        public ArtistController(ILogger<ArtistController> logger,IArtistService ArtistService)
+        public ArtistController(ILogger<ArtistController> logger,IArtistService ArtistService, IArtworkService ArtworkService)
         {
             _logger = logger;
             _ArtistService = ArtistService;
+            _ArtworkService = ArtworkService;
         }
 
         [HttpGet]
@@ -27,6 +29,19 @@ namespace kunstgalerij.Controllers
         {
             try{
                 return new OkObjectResult(await _ArtistService.GetArtist());
+            }
+            catch (Exception)
+            {
+                return new StatusCodeResult(500);
+            }
+        }
+
+        [HttpGet]
+        [Route("artworks")]
+        public async Task<ActionResult<List<Artist>>> GetArtwork()
+        {
+            try{
+                return new OkObjectResult(await _ArtworkService.GetArtwork());
             }
             catch (Exception)
             {

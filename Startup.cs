@@ -36,8 +36,12 @@ namespace kunstgalerij
             services.AddDbContext<ArtContext>();
 
             services.AddTransient<IArtContext,ArtContext>();
+
             services.AddTransient<IArtistRepository,ArtistRepository>();
             services.AddTransient<IArtistService,ArtistService>();
+            
+            services.AddTransient<IArtworkRepository,ArtworkRepository>();
+            services.AddTransient<IArtworkService,ArtworkService>();
 
 
             services.AddControllers();

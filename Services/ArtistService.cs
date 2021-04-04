@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
+using kunstgalerij.DTO;
 using kunstgalerij.Models;
 using kunstgalerij.Repositories;
 
@@ -9,7 +10,7 @@ namespace kunstgalerij.Services
 {
     public interface IArtistService
     {
-        Task<List<Artist>> GetArtist();
+        Task<List<ArtistDTO>> GetArtist();
     }
 
     public class ArtistService : IArtistService
@@ -22,10 +23,10 @@ namespace kunstgalerij.Services
             _mapper = mapper;
             _ArtistRepository = ArtistRepository;
         }
-        //opt moment gwn doorgeven (delete this later)
-        public async Task<List<Artist>> GetArtist()
+        //opt moment gwn doorgeven (delete this later), moet nog toevoegen van artisten kunnen doen
+        public async Task<List<ArtistDTO>> GetArtist()
         {
-            return await _ArtistRepository.GetArtist();
+            return _mapper.Map<List<ArtistDTO>>(await _ArtistRepository.GetArtist());
         }
     }
 }
