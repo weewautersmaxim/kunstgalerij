@@ -80,7 +80,7 @@ namespace kunstgalerij.DataContext
                 ArtworkId = Guid.NewGuid(),
                 Title = "artwork test",
                 ArtistId=1,
-                 Year = 1889,
+                Year = 1889,
                 Price = 2
             });
             modelBuilder.Entity<Artwork>().HasData(new Artwork()
@@ -90,6 +90,7 @@ namespace kunstgalerij.DataContext
                 ArtistId=1,
                 Year = 1881,
                 Price = 500000
+
             });
             modelBuilder.Entity<Artwork>().HasData(new Artwork()
             {

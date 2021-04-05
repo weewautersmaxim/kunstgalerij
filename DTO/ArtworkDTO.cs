@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using kunstgalerij.Models;
 
 namespace kunstgalerij.DTO
 {
@@ -10,6 +11,6 @@ namespace kunstgalerij.DTO
         public int Price { get; set; }
 
         public ArtworkArtistDTO artist { get; set; }
-        public ArtworkAddDTO Category { get; set; }
+        public List<CategoryArtworksDTO> CategoryArtworks { get; set; }
     }
 }

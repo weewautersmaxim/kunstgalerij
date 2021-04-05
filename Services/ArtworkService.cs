@@ -24,8 +24,14 @@ namespace kunstgalerij.Services
             _mapper = mapper;
             _ArtworkRepository = ArtworkRepository;
         }
-        public async Task<List<ArtworkDTO>> GetArtwork()
+        // public async Task<List<Artwork>> GetArtwork()
+        // {
+        //     return await _ArtworkRepository.GetArtwork();
+        // }
+
+         public async Task<List<ArtworkDTO>> GetArtwork()
         {
+            Console.WriteLine(await _ArtworkRepository.GetArtwork());
             return _mapper.Map<List<ArtworkDTO>>(await _ArtworkRepository.GetArtwork());
         }
         public async Task<ArtworkAddDTO> AddArtwork(ArtworkAddDTO artwork)

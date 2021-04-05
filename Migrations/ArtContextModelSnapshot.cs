@@ -98,7 +98,7 @@ namespace kunstgalerij.Migrations
                     b.HasData(
                         new
                         {
-                            ArtworkId = new Guid("c51ef354-5a68-4090-83e6-f8173acc8328"),
+                            ArtworkId = new Guid("a1463c2d-b82a-4c32-a93d-140418c55e2b"),
                             ArtistId = 1,
                             Price = 2,
                             Title = "artwork test",
@@ -106,7 +106,7 @@ namespace kunstgalerij.Migrations
                         },
                         new
                         {
-                            ArtworkId = new Guid("2ed0001a-707d-45e0-80ac-828bd5e1398a"),
+                            ArtworkId = new Guid("fd0a5d7b-ccf5-4087-b365-818f7d51ec50"),
                             ArtistId = 1,
                             Price = 500000,
                             Title = "artwork test number 2",
@@ -114,7 +114,7 @@ namespace kunstgalerij.Migrations
                         },
                         new
                         {
-                            ArtworkId = new Guid("12fe5737-a9fb-4627-9493-4ce2a620edce"),
+                            ArtworkId = new Guid("02396e68-2a44-44a3-b1b1-6760c9ca498d"),
                             ArtistId = 2,
                             Price = 8000000,
                             Title = "artwork test number 3",
@@ -203,13 +203,13 @@ namespace kunstgalerij.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("kunstgalerij.Models.Category", "Category")
+                    b.HasOne("kunstgalerij.Models.Category", "CategoryName")
                         .WithMany("CategoryArtworks")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Category");
+                    b.Navigation("CategoryName");
                 });
 
             modelBuilder.Entity("kunstgalerij.Models.Artist", b =>
