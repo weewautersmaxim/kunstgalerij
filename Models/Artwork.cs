@@ -16,7 +16,7 @@ namespace kunstgalerij.Models
         public int ArtistId  { get; set; }
         public Artist artist { get; set; }
         
-        // //many on many relationship
-        // public List<CategoryArtworks> CategoryArtwork { get; set; }
+        //many on many relationship
+        public List<CategoryArtworks> CategoryArtworks { get; set; }
     }
 }

@@ -10,6 +10,7 @@ namespace kunstgalerij.Services
 {
     public interface IArtistService
     {
+        Task<Artist> AddArtist(Artist artist);
         Task<List<ArtistDTO>> GetArtist();
     }
 
@@ -27,6 +28,12 @@ namespace kunstgalerij.Services
         public async Task<List<ArtistDTO>> GetArtist()
         {
             return _mapper.Map<List<ArtistDTO>>(await _ArtistRepository.GetArtist());
+        }
+
+        public async Task<Artist> AddArtist(Artist artist)
+        {
+                await _ArtistRepository.AddArtist(artist);
+                return artist;
         }
     }
 }

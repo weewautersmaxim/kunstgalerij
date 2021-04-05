@@ -9,7 +9,9 @@ namespace kunstgalerij.Repositories
 {
     public interface IArtistRepository
     {
+        Task<Artist> AddArtist(Artist artist);
         Task<List<Artist>> GetArtist();
+
     }
 
     public class ArtistRepository : IArtistRepository
@@ -25,5 +27,11 @@ namespace kunstgalerij.Repositories
             return await _context.Artists.ToListAsync();
         }
 
+        public async Task<Artist> AddArtist(Artist artist)
+        {
+            await _context.Artists.AddAsync(artist);
+            await _context.SaveChangesAsync();
+            return artist;
+        }
     }
 }

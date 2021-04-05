@@ -98,7 +98,7 @@ namespace kunstgalerij.Migrations
                     b.HasData(
                         new
                         {
-                            ArtworkId = new Guid("e3f26988-4107-4f4f-9215-329c7209ba01"),
+                            ArtworkId = new Guid("c51ef354-5a68-4090-83e6-f8173acc8328"),
                             ArtistId = 1,
                             Price = 2,
                             Title = "artwork test",
@@ -106,7 +106,7 @@ namespace kunstgalerij.Migrations
                         },
                         new
                         {
-                            ArtworkId = new Guid("2c3607a9-99bf-41ed-b54b-a622537ae7db"),
+                            ArtworkId = new Guid("2ed0001a-707d-45e0-80ac-828bd5e1398a"),
                             ArtistId = 1,
                             Price = 500000,
                             Title = "artwork test number 2",
@@ -114,7 +114,7 @@ namespace kunstgalerij.Migrations
                         },
                         new
                         {
-                            ArtworkId = new Guid("a26caa67-1df1-408b-b5ad-af87f4563757"),
+                            ArtworkId = new Guid("12fe5737-a9fb-4627-9493-4ce2a620edce"),
                             ArtistId = 2,
                             Price = 8000000,
                             Title = "artwork test number 3",
@@ -179,6 +179,8 @@ namespace kunstgalerij.Migrations
 
                     b.HasKey("CategoryId", "ArtworkId");
 
+                    b.HasIndex("ArtworkId");
+
                     b.ToTable("CategoryArtworks");
                 });
 
@@ -195,6 +197,12 @@ namespace kunstgalerij.Migrations
 
             modelBuilder.Entity("kunstgalerij.Models.CategoryArtworks", b =>
                 {
+                    b.HasOne("kunstgalerij.Models.Artwork", null)
+                        .WithMany("CategoryArtworks")
+                        .HasForeignKey("ArtworkId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("kunstgalerij.Models.Category", "Category")
                         .WithMany("CategoryArtworks")
                         .HasForeignKey("CategoryId")
@@ -207,6 +215,11 @@ namespace kunstgalerij.Migrations
             modelBuilder.Entity("kunstgalerij.Models.Artist", b =>
                 {
                     b.Navigation("artworks");
+                });
+
+            modelBuilder.Entity("kunstgalerij.Models.Artwork", b =>
+                {
+                    b.Navigation("CategoryArtworks");
                 });
 
             modelBuilder.Entity("kunstgalerij.Models.Category", b =>

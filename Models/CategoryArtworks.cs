@@ -4,7 +4,6 @@ namespace kunstgalerij.Models
 {
     public class CategoryArtworks
     {
-        //Many to many middle class.
         public int CategoryId { get; set; }
         public Guid ArtworkId { get; set; }        
         public Category Category { get; set; }

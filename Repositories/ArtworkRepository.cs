@@ -10,6 +10,7 @@ namespace kunstgalerij.Repositories
     public interface IArtworkRepository
     {
         Task<List<Artwork>> GetArtwork();
+        Task<Artwork> AddArtwork(Artwork artwork);
     }
 
     public class ArtworkRepository : IArtworkRepository
@@ -22,7 +23,14 @@ namespace kunstgalerij.Repositories
 
         public async Task<List<Artwork>> GetArtwork()
         {
-            return await _context.Artworks.Include(s => s.artist).ToListAsync();
+            return await _context.Artworks.Include(s => s.artist).Include(s => s.CategoryArtworks).ThenInclude(s => s.Category).ToListAsync();
+        }
+
+         public async Task<Artwork> AddArtwork(Artwork artwork)
+        {
+            await _context.Artworks.AddAsync(artwork);
+            await _context.SaveChangesAsync();
+            return artwork;
         }
     }
 }

@@ -11,6 +11,7 @@ namespace kunstgalerij.Services
     public interface IArtworkService
     {
         Task<List<ArtworkDTO>> GetArtwork();
+        Task<ArtworkAddDTO> AddArtwork(ArtworkAddDTO artwork);
     }
 
     public class ArtworkService : IArtworkService
@@ -26,6 +27,17 @@ namespace kunstgalerij.Services
         public async Task<List<ArtworkDTO>> GetArtwork()
         {
             return _mapper.Map<List<ArtworkDTO>>(await _ArtworkRepository.GetArtwork());
+        }
+        public async Task<ArtworkAddDTO> AddArtwork(ArtworkAddDTO artwork)
+        {
+                Artwork newArtwork = _mapper.Map<Artwork>(artwork);
+                newArtwork.CategoryArtworks = new List<CategoryArtworks>();
+                foreach (var categoryId in artwork.Categories)
+                {
+                    newArtwork.CategoryArtworks.Add(new CategoryArtworks() { CategoryId = categoryId });
+                }
+                await _ArtworkRepository.AddArtwork(newArtwork);
+                return artwork;
         }
     }
 }

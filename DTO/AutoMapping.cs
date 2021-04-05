@@ -13,6 +13,8 @@ namespace Sneakers.API.DTO
             CreateMap<Artwork,ArtworkDTO>();
             //extra DTO for filtering data when get artwork is called.
             CreateMap<Artist,ArtworkArtistDTO>();
+            CreateMap<ArtworkAddDTO, Artwork>();
+
         }
     }
 }

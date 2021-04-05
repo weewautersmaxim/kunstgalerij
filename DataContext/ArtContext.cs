@@ -1,4 +1,6 @@
 using System;
+using System.Threading;
+using System.Threading.Tasks;
 using kunstgalerij.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -13,6 +15,8 @@ namespace kunstgalerij.DataContext
         DbSet<Artwork> Artworks { get; set; }
         DbSet<Category> Categories { get; set; }
         DbSet<CategoryArtworks> CategoryArtworks { get; set; }
+        Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
+
     }
 
     public class ArtContext : DbContext, IArtContext

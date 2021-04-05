@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using kunstgalerij.DTO;
 using kunstgalerij.Models;
 using kunstgalerij.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -23,6 +24,7 @@ namespace kunstgalerij.Controllers
             _ArtworkService = ArtworkService;
         }
 
+        //artists
         [HttpGet]
         [Route("artists")]
         public async Task<ActionResult<List<Artist>>> GetArtist()
@@ -35,16 +37,40 @@ namespace kunstgalerij.Controllers
                 return new StatusCodeResult(500);
             }
         }
+        [HttpPost]
+        [Route("artists")]
+         public async Task<ActionResult<Artist>> AddArtist(Artist artist)
+        {
+            try{
+                return new OkObjectResult(await _ArtistService.AddArtist(artist));
+            }
+            catch(Exception){
+                return new StatusCodeResult(500);
+            }
+        }
 
+        //artworks
         [HttpGet]
         [Route("artworks")]
-        public async Task<ActionResult<List<Artist>>> GetArtwork()
+        public async Task<ActionResult<List<ArtworkDTO>>> GetArtwork()
         {
             try{
                 return new OkObjectResult(await _ArtworkService.GetArtwork());
             }
             catch (Exception)
             {
+                return new StatusCodeResult(500);
+            }
+        }
+
+        [HttpPost]
+        [Route("artworks")]
+        public async Task<ActionResult<ArtworkAddDTO>> AddArtwork(ArtworkAddDTO artwork)
+        {
+            try{
+                return new OkObjectResult(await _ArtworkService.AddArtwork(artwork));
+            }
+            catch(Exception){
                 return new StatusCodeResult(500);
             }
         }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\backend\\Project\\kunstgalerij\\kunstgalerij.csproj": {}
+    "c:\\backend\\Project\\kunstgalerij\\kunstgalerij.csproj": {}
   },
   "projects": {
-    "C:\\backend\\Project\\kunstgalerij\\kunstgalerij.csproj": {
+    "c:\\backend\\Project\\kunstgalerij\\kunstgalerij.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\backend\\Project\\kunstgalerij\\kunstgalerij.csproj",
+        "projectUniqueName": "c:\\backend\\Project\\kunstgalerij\\kunstgalerij.csproj",
         "projectName": "kunstgalerij",
-        "projectPath": "C:\\backend\\Project\\kunstgalerij\\kunstgalerij.csproj",
+        "projectPath": "c:\\backend\\Project\\kunstgalerij\\kunstgalerij.csproj",
         "packagesPath": "C:\\Users\\weewa\\.nuget\\packages\\",
-        "outputPath": "C:\\backend\\Project\\kunstgalerij\\obj\\",
+        "outputPath": "c:\\backend\\Project\\kunstgalerij\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
