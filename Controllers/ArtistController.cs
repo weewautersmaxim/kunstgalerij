@@ -1,9 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using kunstgalerij.DTO;
 using kunstgalerij.Models;
 using kunstgalerij.Services;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -17,11 +20,15 @@ namespace kunstgalerij.Controllers
         private readonly IArtworkService _ArtworkService;
         private readonly ILogger<ArtistController> _logger;
 
-        public ArtistController(ILogger<ArtistController> logger,IArtistService ArtistService, IArtworkService ArtworkService)
+        //image test (ook in ctor)
+        public static IWebHostEnvironment _environment;
+
+        public ArtistController(ILogger<ArtistController> logger,IArtistService ArtistService, IArtworkService ArtworkService, IWebHostEnvironment environment)
         {
             _logger = logger;
             _ArtistService = ArtistService;
             _ArtworkService = ArtworkService;
+            _environment = environment;
         }
 
         //artists
@@ -74,6 +81,5 @@ namespace kunstgalerij.Controllers
                 return new StatusCodeResult(500);
             }
         }
-        
     }
 }

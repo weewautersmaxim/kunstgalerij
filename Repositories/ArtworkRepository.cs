@@ -11,6 +11,7 @@ namespace kunstgalerij.Repositories
     {
         Task<List<Artwork>> GetArtwork();
         Task<Artwork> AddArtwork(Artwork artwork);
+        Task AddArtworkImage(ArtworkImage artworkImage);
     }
 
     public class ArtworkRepository : IArtworkRepository
@@ -31,6 +32,12 @@ namespace kunstgalerij.Repositories
             await _context.Artworks.AddAsync(artwork);
             await _context.SaveChangesAsync();
             return artwork;
+        }
+
+        public async Task AddArtworkImage(ArtworkImage artworkImage)
+        {
+            await _context.ArtworkImages.AddAsync(artworkImage);
+            await _context.SaveChangesAsync();
         }
     }
 }

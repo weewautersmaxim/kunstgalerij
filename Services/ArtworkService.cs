@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using AutoMapper;
 using kunstgalerij.DTO;
 using kunstgalerij.Models;
 using kunstgalerij.Repositories;
+using Microsoft.AspNetCore.Http;
 
 namespace kunstgalerij.Services
 {
@@ -24,10 +26,6 @@ namespace kunstgalerij.Services
             _mapper = mapper;
             _ArtworkRepository = ArtworkRepository;
         }
-        // public async Task<List<Artwork>> GetArtwork()
-        // {
-        //     return await _ArtworkRepository.GetArtwork();
-        // }
 
          public async Task<List<ArtworkDTO>> GetArtwork()
         {
@@ -36,13 +34,19 @@ namespace kunstgalerij.Services
         }
         public async Task<ArtworkAddDTO> AddArtwork(ArtworkAddDTO artwork)
         {
+                byte[] bytes = System.Convert.FromBase64String(artwork.ImageEncoded);
+
                 Artwork newArtwork = _mapper.Map<Artwork>(artwork);
+
                 newArtwork.CategoryArtworks = new List<CategoryArtworks>();
                 foreach (var categoryId in artwork.Categories)
                 {
                     newArtwork.CategoryArtworks.Add(new CategoryArtworks() { CategoryId = categoryId });
                 }
                 await _ArtworkRepository.AddArtwork(newArtwork);
+                string fileName = $"{Guid.NewGuid()}.{artwork.Extension}";
+                await _ArtworkRepository.AddArtworkImage(new ArtworkImage() { ArtworkId = newArtwork.ArtworkId, Name = fileName });
+
                 return artwork;
         }
     }

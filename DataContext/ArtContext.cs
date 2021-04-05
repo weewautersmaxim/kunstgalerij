@@ -13,6 +13,7 @@ namespace kunstgalerij.DataContext
     {
         DbSet<Artist> Artists { get; set; }
         DbSet<Artwork> Artworks { get; set; }
+        DbSet<ArtworkImage> ArtworkImages { get; set; }
         DbSet<Category> Categories { get; set; }
         DbSet<CategoryArtworks> CategoryArtworks { get; set; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
@@ -24,6 +25,7 @@ namespace kunstgalerij.DataContext
         //turning c# code into sql database tables
         public DbSet<Artist> Artists { get; set; }
         public DbSet<Artwork> Artworks { get; set; }
+        public DbSet<ArtworkImage> ArtworkImages { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<CategoryArtworks> CategoryArtworks { get; set; }
         private ConnectionStrings _connectionStrings;
