@@ -1,14 +1,16 @@
 using System;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 namespace kunstgalerij.Models
 {
     public class ArtworkImage
     {
-        public Guid ArtworkImageId { get; set; }
+        public int ArtworkImageId { get; set; }
         public string Name { get; set; }
         
         [JsonIgnore]
-        public Guid ArtworkId { get; set; }
+        public List<Artwork> artworks { get; set; }
+        
     }
 }

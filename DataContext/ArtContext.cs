@@ -46,6 +46,12 @@ namespace kunstgalerij.DataContext
         {
             modelBuilder.Entity<CategoryArtworks>()
               .HasKey(cs => new { cs.CategoryId, cs.ArtworkId });
+            
+            modelBuilder.Entity<ArtworkImage>().HasData(new ArtworkImage()
+            {
+                ArtworkImageId = 1,
+                Name = "testimage"
+            });
 
             modelBuilder.Entity<Category>().HasData(new Category()
             {
@@ -83,7 +89,8 @@ namespace kunstgalerij.DataContext
                 Title = "artwork test",
                 ArtistId=1,
                 Year = 1889,
-                Price = 2
+                Price = 2,
+                ArtworkImageId = 1
             });
             modelBuilder.Entity<Artwork>().HasData(new Artwork()
             {
@@ -91,7 +98,8 @@ namespace kunstgalerij.DataContext
                 Title = "artwork test number 2",
                 ArtistId=1,
                 Year = 1881,
-                Price = 500000
+                Price = 500000,
+                ArtworkImageId = 1
 
             });
             modelBuilder.Entity<Artwork>().HasData(new Artwork()
@@ -100,7 +108,8 @@ namespace kunstgalerij.DataContext
                 Title = "artwork test number 3",
                 ArtistId=2,
                 Year = 1996,
-                Price = 8000000
+                Price = 8000000,
+                ArtworkImageId = 1
             });
 
             modelBuilder.Entity<Artist>().HasData(new Artist()

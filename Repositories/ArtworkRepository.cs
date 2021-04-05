@@ -24,7 +24,7 @@ namespace kunstgalerij.Repositories
 
         public async Task<List<Artwork>> GetArtwork()
         {
-            return await _context.Artworks.Include(s => s.CategoryArtworks).ThenInclude(s => s.Category).Include(s => s.artist).ToListAsync();
+            return await _context.Artworks.Include(s => s.CategoryArtworks).ThenInclude(s => s.Category).Include(s => s.artist).Include(s =>s.artworkImage).ToListAsync();
         }
 
          public async Task<Artwork> AddArtwork(Artwork artwork)

@@ -26,6 +26,19 @@ namespace kunstgalerij.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ArtworkImages",
+                columns: table => new
+                {
+                    ArtworkImageId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ArtworkImages", x => x.ArtworkImageId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Categories",
                 columns: table => new
                 {
@@ -46,6 +59,7 @@ namespace kunstgalerij.Migrations
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Year = table.Column<int>(type: "int", nullable: false),
                     Price = table.Column<int>(type: "int", nullable: false),
+                    ArtworkImageId = table.Column<int>(type: "int", nullable: false),
                     ArtistId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -57,24 +71,11 @@ namespace kunstgalerij.Migrations
                         principalTable: "Artists",
                         principalColumn: "ArtistId",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ArtworkImages",
-                columns: table => new
-                {
-                    ArtworkImageId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ArtworkId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ArtworkImages", x => x.ArtworkImageId);
                     table.ForeignKey(
-                        name: "FK_ArtworkImages_Artworks_ArtworkId",
-                        column: x => x.ArtworkId,
-                        principalTable: "Artworks",
-                        principalColumn: "ArtworkId",
+                        name: "FK_Artworks_ArtworkImages_ArtworkImageId",
+                        column: x => x.ArtworkImageId,
+                        principalTable: "ArtworkImages",
+                        principalColumn: "ArtworkImageId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -112,6 +113,11 @@ namespace kunstgalerij.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "ArtworkImages",
+                columns: new[] { "ArtworkImageId", "Name" },
+                values: new object[] { 1, "testimage" });
+
+            migrationBuilder.InsertData(
                 table: "Categories",
                 columns: new[] { "CategoryId", "CategoryName" },
                 values: new object[,]
@@ -126,28 +132,28 @@ namespace kunstgalerij.Migrations
 
             migrationBuilder.InsertData(
                 table: "Artworks",
-                columns: new[] { "ArtworkId", "ArtistId", "Price", "Title", "Year" },
-                values: new object[] { new Guid("25fe1594-ddaf-46de-89f9-7166f1bc1a89"), 1, 2, "artwork test", 1889 });
+                columns: new[] { "ArtworkId", "ArtistId", "ArtworkImageId", "Price", "Title", "Year" },
+                values: new object[] { new Guid("e3607a37-f1d3-452c-a2e4-5a776f759a9b"), 1, 1, 2, "artwork test", 1889 });
 
             migrationBuilder.InsertData(
                 table: "Artworks",
-                columns: new[] { "ArtworkId", "ArtistId", "Price", "Title", "Year" },
-                values: new object[] { new Guid("47895766-5d8f-4685-94ba-17dd9403b0ec"), 1, 500000, "artwork test number 2", 1881 });
+                columns: new[] { "ArtworkId", "ArtistId", "ArtworkImageId", "Price", "Title", "Year" },
+                values: new object[] { new Guid("70f19281-4fe4-4b5a-85a1-be71b5f3c956"), 1, 1, 500000, "artwork test number 2", 1881 });
 
             migrationBuilder.InsertData(
                 table: "Artworks",
-                columns: new[] { "ArtworkId", "ArtistId", "Price", "Title", "Year" },
-                values: new object[] { new Guid("098db663-88a1-486e-86a8-34237f5a5f84"), 2, 8000000, "artwork test number 3", 1996 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_ArtworkImages_ArtworkId",
-                table: "ArtworkImages",
-                column: "ArtworkId");
+                columns: new[] { "ArtworkId", "ArtistId", "ArtworkImageId", "Price", "Title", "Year" },
+                values: new object[] { new Guid("2c148308-257b-4f88-aaf9-c558b0e50ab3"), 2, 1, 8000000, "artwork test number 3", 1996 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Artworks_ArtistId",
                 table: "Artworks",
                 column: "ArtistId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Artworks_ArtworkImageId",
+                table: "Artworks",
+                column: "ArtworkImageId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CategoryArtworks_ArtworkId",
@@ -157,9 +163,6 @@ namespace kunstgalerij.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "ArtworkImages");
-
             migrationBuilder.DropTable(
                 name: "CategoryArtworks");
 
@@ -171,6 +174,9 @@ namespace kunstgalerij.Migrations
 
             migrationBuilder.DropTable(
                 name: "Artists");
+
+            migrationBuilder.DropTable(
+                name: "ArtworkImages");
         }
     }
 }

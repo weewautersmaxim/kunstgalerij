@@ -80,6 +80,9 @@ namespace kunstgalerij.Migrations
                     b.Property<int>("ArtistId")
                         .HasColumnType("int");
 
+                    b.Property<int>("ArtworkImageId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Price")
                         .HasColumnType("int");
 
@@ -93,29 +96,34 @@ namespace kunstgalerij.Migrations
 
                     b.HasIndex("ArtistId");
 
+                    b.HasIndex("ArtworkImageId");
+
                     b.ToTable("Artworks");
 
                     b.HasData(
                         new
                         {
-                            ArtworkId = new Guid("25fe1594-ddaf-46de-89f9-7166f1bc1a89"),
+                            ArtworkId = new Guid("e3607a37-f1d3-452c-a2e4-5a776f759a9b"),
                             ArtistId = 1,
+                            ArtworkImageId = 1,
                             Price = 2,
                             Title = "artwork test",
                             Year = 1889
                         },
                         new
                         {
-                            ArtworkId = new Guid("47895766-5d8f-4685-94ba-17dd9403b0ec"),
+                            ArtworkId = new Guid("70f19281-4fe4-4b5a-85a1-be71b5f3c956"),
                             ArtistId = 1,
+                            ArtworkImageId = 1,
                             Price = 500000,
                             Title = "artwork test number 2",
                             Year = 1881
                         },
                         new
                         {
-                            ArtworkId = new Guid("098db663-88a1-486e-86a8-34237f5a5f84"),
+                            ArtworkId = new Guid("2c148308-257b-4f88-aaf9-c558b0e50ab3"),
                             ArtistId = 2,
+                            ArtworkImageId = 1,
                             Price = 8000000,
                             Title = "artwork test number 3",
                             Year = 1996
@@ -124,21 +132,24 @@ namespace kunstgalerij.Migrations
 
             modelBuilder.Entity("kunstgalerij.Models.ArtworkImage", b =>
                 {
-                    b.Property<Guid>("ArtworkImageId")
+                    b.Property<int>("ArtworkImageId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("ArtworkId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ArtworkImageId");
 
-                    b.HasIndex("ArtworkId");
-
                     b.ToTable("ArtworkImages");
+
+                    b.HasData(
+                        new
+                        {
+                            ArtworkImageId = 1,
+                            Name = "testimage"
+                        });
                 });
 
             modelBuilder.Entity("kunstgalerij.Models.Category", b =>
@@ -211,16 +222,15 @@ namespace kunstgalerij.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("artist");
-                });
-
-            modelBuilder.Entity("kunstgalerij.Models.ArtworkImage", b =>
-                {
-                    b.HasOne("kunstgalerij.Models.Artwork", null)
-                        .WithMany("Image")
-                        .HasForeignKey("ArtworkId")
+                    b.HasOne("kunstgalerij.Models.ArtworkImage", "image")
+                        .WithMany("artwork")
+                        .HasForeignKey("ArtworkImageId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("artist");
+
+                    b.Navigation("image");
                 });
 
             modelBuilder.Entity("kunstgalerij.Models.CategoryArtworks", b =>
@@ -248,8 +258,11 @@ namespace kunstgalerij.Migrations
             modelBuilder.Entity("kunstgalerij.Models.Artwork", b =>
                 {
                     b.Navigation("CategoryArtworks");
+                });
 
-                    b.Navigation("Image");
+            modelBuilder.Entity("kunstgalerij.Models.ArtworkImage", b =>
+                {
+                    b.Navigation("artwork");
                 });
 
             modelBuilder.Entity("kunstgalerij.Models.Category", b =>

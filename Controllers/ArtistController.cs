@@ -70,16 +70,16 @@ namespace kunstgalerij.Controllers
             }
         }
 
-        [HttpPost]
-        [Route("artworks")]
-        public async Task<ActionResult<ArtworkAddDTO>> AddArtwork(ArtworkAddDTO artwork)
-        {
-            try{
-                return new OkObjectResult(await _ArtworkService.AddArtwork(artwork));
-            }
-            catch(Exception){
-                return new StatusCodeResult(500);
-            }
-        }
+        // [HttpPost]
+        // [Route("artworks")]
+        // public async Task<ActionResult<ArtworkAddDTO>> AddArtwork(ArtworkAddDTO artwork)
+        // {
+        //     try{
+        //         return new OkObjectResult(await _ArtworkService.AddArtwork(artwork));
+        //     }
+        //     catch(Exception){
+        //         return new StatusCodeResult(500);
+        //     }
+        // }
     }
 }
