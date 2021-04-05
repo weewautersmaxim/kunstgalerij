@@ -44,7 +44,7 @@ namespace kunstgalerij.Services
                     newArtwork.CategoryArtworks.Add(new CategoryArtworks() { CategoryId = categoryId });
                 }
                 await _ArtworkRepository.AddArtwork(newArtwork);
-                string fileName = $"{Guid.NewGuid()}.{artwork.Extension}";
+                string fileName = $"{artwork.Imagename}.{artwork.Extension}";
                 await _ArtworkRepository.AddArtworkImage(new ArtworkImage() { ArtworkId = newArtwork.ArtworkId, Name = fileName });
 
                 return artwork;

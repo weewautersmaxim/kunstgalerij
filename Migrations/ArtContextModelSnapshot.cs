@@ -98,7 +98,7 @@ namespace kunstgalerij.Migrations
                     b.HasData(
                         new
                         {
-                            ArtworkId = new Guid("e22905c8-867f-4e67-8670-f88767b968e2"),
+                            ArtworkId = new Guid("25fe1594-ddaf-46de-89f9-7166f1bc1a89"),
                             ArtistId = 1,
                             Price = 2,
                             Title = "artwork test",
@@ -106,7 +106,7 @@ namespace kunstgalerij.Migrations
                         },
                         new
                         {
-                            ArtworkId = new Guid("477499c5-1f54-465a-836a-e007e92c8cc4"),
+                            ArtworkId = new Guid("47895766-5d8f-4685-94ba-17dd9403b0ec"),
                             ArtistId = 1,
                             Price = 500000,
                             Title = "artwork test number 2",
@@ -114,7 +114,7 @@ namespace kunstgalerij.Migrations
                         },
                         new
                         {
-                            ArtworkId = new Guid("772a637d-01fd-494e-8173-782cf95655f1"),
+                            ArtworkId = new Guid("098db663-88a1-486e-86a8-34237f5a5f84"),
                             ArtistId = 2,
                             Price = 8000000,
                             Title = "artwork test number 3",

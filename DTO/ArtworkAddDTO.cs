@@ -11,6 +11,7 @@ namespace kunstgalerij.DTO
         public int Price { get; set; }
         public string ImageEncoded { get; set; }
         public string Extension { get; set; }
+        public string Imagename { get; set; }
         public int ArtistId { get; set; }
         public List<int> Categories { get; set; }
     }
