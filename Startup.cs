@@ -2,6 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using kunstgalerij.DataContext;
+using kunstgalerij.Repositories;
+using kunstgalerij.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -11,6 +14,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Sneakers.API.Config;
+using Sneakers.API.Services;
 
 namespace kunstgalerij
 {
@@ -26,6 +31,25 @@ namespace kunstgalerij
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<ConnectionStrings>(Configuration.GetSection("ConnectionStrings"));
+
+            services.AddAutoMapper(typeof(Startup));
+            services.AddDbContext<ArtContext>();
+
+            services.AddTransient<IArtContext,ArtContext>();
+
+            services.AddTransient<IArtistRepository,ArtistRepository>();
+            services.AddTransient<IArtistService,ArtistService>();
+            
+            services.AddTransient<IArtworkRepository,ArtworkRepository>();
+            services.AddTransient<IArtworkService,ArtworkService>();
+            
+            services.AddTransient<ICategoryRepository, CategoryRepository>();
+            services.AddTransient<ICategoryService, CategoryService>();
+
+            services.AddTransient<IBlobService,BlobService>();
+
+            
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
