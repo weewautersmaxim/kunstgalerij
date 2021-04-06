@@ -80,8 +80,8 @@ namespace kunstgalerij.Migrations
                     b.Property<int>("ArtistId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ArtworkImageId")
-                        .HasColumnType("int");
+                    b.Property<string>("Imagename")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Price")
                         .HasColumnType("int");
@@ -96,59 +96,32 @@ namespace kunstgalerij.Migrations
 
                     b.HasIndex("ArtistId");
 
-                    b.HasIndex("ArtworkImageId");
-
                     b.ToTable("Artworks");
 
                     b.HasData(
                         new
                         {
-                            ArtworkId = new Guid("e3607a37-f1d3-452c-a2e4-5a776f759a9b"),
+                            ArtworkId = new Guid("4431b418-b5c2-48a2-a9ae-ee7de0730a11"),
                             ArtistId = 1,
-                            ArtworkImageId = 1,
                             Price = 2,
                             Title = "artwork test",
                             Year = 1889
                         },
                         new
                         {
-                            ArtworkId = new Guid("70f19281-4fe4-4b5a-85a1-be71b5f3c956"),
+                            ArtworkId = new Guid("2ee1a32e-b22e-4c3f-8d8e-3f00a6c012b4"),
                             ArtistId = 1,
-                            ArtworkImageId = 1,
                             Price = 500000,
                             Title = "artwork test number 2",
                             Year = 1881
                         },
                         new
                         {
-                            ArtworkId = new Guid("2c148308-257b-4f88-aaf9-c558b0e50ab3"),
+                            ArtworkId = new Guid("6d4a9a3f-b944-408d-8c09-16b07732d368"),
                             ArtistId = 2,
-                            ArtworkImageId = 1,
                             Price = 8000000,
                             Title = "artwork test number 3",
                             Year = 1996
-                        });
-                });
-
-            modelBuilder.Entity("kunstgalerij.Models.ArtworkImage", b =>
-                {
-                    b.Property<int>("ArtworkImageId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("ArtworkImageId");
-
-                    b.ToTable("ArtworkImages");
-
-                    b.HasData(
-                        new
-                        {
-                            ArtworkImageId = 1,
-                            Name = "testimage"
                         });
                 });
 
@@ -222,15 +195,7 @@ namespace kunstgalerij.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("kunstgalerij.Models.ArtworkImage", "image")
-                        .WithMany("artwork")
-                        .HasForeignKey("ArtworkImageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("artist");
-
-                    b.Navigation("image");
                 });
 
             modelBuilder.Entity("kunstgalerij.Models.CategoryArtworks", b =>
@@ -258,11 +223,6 @@ namespace kunstgalerij.Migrations
             modelBuilder.Entity("kunstgalerij.Models.Artwork", b =>
                 {
                     b.Navigation("CategoryArtworks");
-                });
-
-            modelBuilder.Entity("kunstgalerij.Models.ArtworkImage", b =>
-                {
-                    b.Navigation("artwork");
                 });
 
             modelBuilder.Entity("kunstgalerij.Models.Category", b =>

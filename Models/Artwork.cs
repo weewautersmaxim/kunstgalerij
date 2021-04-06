@@ -11,10 +11,7 @@ namespace kunstgalerij.Models
         public String Title { get; set; } 
         public int Year { get; set; }
         public int Price { get; set; }
-        
-         [JsonIgnore]
-        public int ArtworkImageId  { get; set; }
-        public ArtworkImage artworkImage { get; set; }
+        public string Imagename { get; set; }
 
         //1 to many relationship
         [JsonIgnore]

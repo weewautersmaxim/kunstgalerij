@@ -15,6 +15,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Sneakers.API.Config;
+using Sneakers.API.Services;
 
 namespace kunstgalerij
 {
@@ -42,6 +43,9 @@ namespace kunstgalerij
             
             services.AddTransient<IArtworkRepository,ArtworkRepository>();
             services.AddTransient<IArtworkService,ArtworkService>();
+
+            services.AddTransient<IBlobService,BlobService>();
+
 
 
             services.AddControllers();

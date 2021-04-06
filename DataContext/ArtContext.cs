@@ -13,7 +13,6 @@ namespace kunstgalerij.DataContext
     {
         DbSet<Artist> Artists { get; set; }
         DbSet<Artwork> Artworks { get; set; }
-        DbSet<ArtworkImage> ArtworkImages { get; set; }
         DbSet<Category> Categories { get; set; }
         DbSet<CategoryArtworks> CategoryArtworks { get; set; }
         Task<int> SaveChangesAsync(CancellationToken cancellationToken = default);
@@ -25,7 +24,6 @@ namespace kunstgalerij.DataContext
         //turning c# code into sql database tables
         public DbSet<Artist> Artists { get; set; }
         public DbSet<Artwork> Artworks { get; set; }
-        public DbSet<ArtworkImage> ArtworkImages { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<CategoryArtworks> CategoryArtworks { get; set; }
         private ConnectionStrings _connectionStrings;
@@ -46,12 +44,6 @@ namespace kunstgalerij.DataContext
         {
             modelBuilder.Entity<CategoryArtworks>()
               .HasKey(cs => new { cs.CategoryId, cs.ArtworkId });
-            
-            modelBuilder.Entity<ArtworkImage>().HasData(new ArtworkImage()
-            {
-                ArtworkImageId = 1,
-                Name = "testimage"
-            });
 
             modelBuilder.Entity<Category>().HasData(new Category()
             {
@@ -89,8 +81,7 @@ namespace kunstgalerij.DataContext
                 Title = "artwork test",
                 ArtistId=1,
                 Year = 1889,
-                Price = 2,
-                ArtworkImageId = 1
+                Price = 2
             });
             modelBuilder.Entity<Artwork>().HasData(new Artwork()
             {
@@ -98,8 +89,7 @@ namespace kunstgalerij.DataContext
                 Title = "artwork test number 2",
                 ArtistId=1,
                 Year = 1881,
-                Price = 500000,
-                ArtworkImageId = 1
+                Price = 500000
 
             });
             modelBuilder.Entity<Artwork>().HasData(new Artwork()
@@ -108,8 +98,7 @@ namespace kunstgalerij.DataContext
                 Title = "artwork test number 3",
                 ArtistId=2,
                 Year = 1996,
-                Price = 8000000,
-                ArtworkImageId = 1
+                Price = 8000000
             });
 
             modelBuilder.Entity<Artist>().HasData(new Artist()

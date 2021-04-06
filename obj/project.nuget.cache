@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "CUCE33XEuLTzQx/jlwx61bZxFNms2k7HHYFJ2choLgZaXh/HatWF7/zqrXMyZ/rjEQiz/c+JvvCfqY/Xie5w8w==",
+  "dgSpecHash": "LkB6GoJQlaS0f8zJhdIYmiTl+DXMKk/rfw/ChgoAgmehGT51kmA5HdIb6siSJJNGKwj2JVNvGECOZ0M9W6y5tQ==",
   "success": true,
   "projectFilePath": "C:\\backend\\Project\\kunstgalerij\\kunstgalerij.csproj",
   "expectedPackageFiles": [
@@ -12,6 +12,9 @@
     "C:\\Users\\weewa\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\5.0.1\\microsoft.aspnetcore.authentication.jwtbearer.5.0.1.nupkg.sha512",
     "C:\\Users\\weewa\\.nuget\\packages\\microsoft.aspnetcore.authentication.openidconnect\\5.0.1\\microsoft.aspnetcore.authentication.openidconnect.5.0.1.nupkg.sha512",
     "C:\\Users\\weewa\\.nuget\\packages\\microsoft.aspnetcore.mvc.versioning\\5.0.0-preview.2\\microsoft.aspnetcore.mvc.versioning.5.0.0-preview.2.nupkg.sha512",
+    "C:\\Users\\weewa\\.nuget\\packages\\microsoft.azure.keyvault.core\\2.0.4\\microsoft.azure.keyvault.core.2.0.4.nupkg.sha512",
+    "C:\\Users\\weewa\\.nuget\\packages\\microsoft.azure.storage.blob\\11.2.2\\microsoft.azure.storage.blob.11.2.2.nupkg.sha512",
+    "C:\\Users\\weewa\\.nuget\\packages\\microsoft.azure.storage.common\\11.2.2\\microsoft.azure.storage.common.11.2.2.nupkg.sha512",
     "C:\\Users\\weewa\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\weewa\\.nuget\\packages\\microsoft.data.sqlclient\\2.0.1\\microsoft.data.sqlclient.2.0.1.nupkg.sha512",
     "C:\\Users\\weewa\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.0.1\\microsoft.data.sqlclient.sni.runtime.2.0.1.nupkg.sha512",
@@ -42,6 +45,8 @@
     "C:\\Users\\weewa\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
     "C:\\Users\\weewa\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\weewa\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
+    "C:\\Users\\weewa\\.nuget\\packages\\netstandard.library\\2.0.1\\netstandard.library.2.0.1.nupkg.sha512",
+    "C:\\Users\\weewa\\.nuget\\packages\\newtonsoft.json\\10.0.2\\newtonsoft.json.10.0.2.nupkg.sha512",
     "C:\\Users\\weewa\\.nuget\\packages\\runtime.native.system\\4.3.0\\runtime.native.system.4.3.0.nupkg.sha512",
     "C:\\Users\\weewa\\.nuget\\packages\\swashbuckle.aspnetcore\\5.6.3\\swashbuckle.aspnetcore.5.6.3.nupkg.sha512",
     "C:\\Users\\weewa\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\5.6.3\\swashbuckle.aspnetcore.swagger.5.6.3.nupkg.sha512",

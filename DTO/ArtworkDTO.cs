@@ -9,8 +9,7 @@ namespace kunstgalerij.DTO
         public String Title { get; set; } 
         public int Year { get; set; }
         public int Price { get; set; }
-
-        public ArtworkImage artworkImage { get; set; }
+        public string Imagename { get; set; }
         
         //extra DTO classes made for adding easy to read data, instead of everything
         public ArtworkArtistDTO artist { get; set; }
