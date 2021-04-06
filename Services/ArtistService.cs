@@ -11,7 +11,8 @@ namespace kunstgalerij.Services
     public interface IArtistService
     {
         Task<Artist> AddArtist(Artist artist);
-        Task<List<ArtistDTO>> GetArtist();
+        Task<List<ArtistDTO>> GetArtists();
+        Task<Artist> GetArtist(string name);
     }
 
     public class ArtistService : IArtistService
@@ -25,15 +26,27 @@ namespace kunstgalerij.Services
             _ArtistRepository = ArtistRepository;
         }
         //opt moment gwn doorgeven (delete this later), moet nog toevoegen van artisten kunnen doen
-        public async Task<List<ArtistDTO>> GetArtist()
+        public async Task<List<ArtistDTO>> GetArtists()
         {
-            return _mapper.Map<List<ArtistDTO>>(await _ArtistRepository.GetArtist());
+            return _mapper.Map<List<ArtistDTO>>(await _ArtistRepository.GetArtists());
         }
 
         public async Task<Artist> AddArtist(Artist artist)
         {
                 await _ArtistRepository.AddArtist(artist);
                 return artist;
+        }
+
+        public async Task<Artist> GetArtist(string name){
+            try
+            {
+                return await _ArtistRepository.GetArtist(name);
+            }
+            catch (System.Exception ex)
+            {
+                
+                throw ex;
+            }
         }
     }
 }

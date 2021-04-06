@@ -97,32 +97,6 @@ namespace kunstgalerij.Migrations
                     b.HasIndex("ArtistId");
 
                     b.ToTable("Artworks");
-
-                    b.HasData(
-                        new
-                        {
-                            ArtworkId = new Guid("4431b418-b5c2-48a2-a9ae-ee7de0730a11"),
-                            ArtistId = 1,
-                            Price = 2,
-                            Title = "artwork test",
-                            Year = 1889
-                        },
-                        new
-                        {
-                            ArtworkId = new Guid("2ee1a32e-b22e-4c3f-8d8e-3f00a6c012b4"),
-                            ArtistId = 1,
-                            Price = 500000,
-                            Title = "artwork test number 2",
-                            Year = 1881
-                        },
-                        new
-                        {
-                            ArtworkId = new Guid("6d4a9a3f-b944-408d-8c09-16b07732d368"),
-                            ArtistId = 2,
-                            Price = 8000000,
-                            Title = "artwork test number 3",
-                            Year = 1996
-                        });
                 });
 
             modelBuilder.Entity("kunstgalerij.Models.Category", b =>

@@ -1,6 +1,7 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using kunstgalerij.DTO;
 using kunstgalerij.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -75,31 +76,6 @@ namespace kunstgalerij.DataContext
                 CategoryId = 6,
                 CategoryName = "portrait"
             });
-             modelBuilder.Entity<Artwork>().HasData(new Artwork()
-            {
-                ArtworkId = Guid.NewGuid(),
-                Title = "artwork test",
-                ArtistId=1,
-                Year = 1889,
-                Price = 2
-            });
-            modelBuilder.Entity<Artwork>().HasData(new Artwork()
-            {
-                ArtworkId = Guid.NewGuid(),
-                Title = "artwork test number 2",
-                ArtistId=1,
-                Year = 1881,
-                Price = 500000
-
-            });
-            modelBuilder.Entity<Artwork>().HasData(new Artwork()
-            {
-                ArtworkId = Guid.NewGuid(),
-                Title = "artwork test number 3",
-                ArtistId=2,
-                Year = 1996,
-                Price = 8000000
-            });
 
             modelBuilder.Entity<Artist>().HasData(new Artist()
             {
@@ -119,7 +95,7 @@ namespace kunstgalerij.DataContext
                 Age = 92,
                 Gender = "man",
                 Birthplace = "Spain",
-                description = "He was a draftsman, sculptor and jewelry designer. He was also one of the most famous Spanish painters."
+                description = "He was a draftsman, sculptor and jewelry designer. He was also one of the most famous Spanish painters"
             });
         }
 

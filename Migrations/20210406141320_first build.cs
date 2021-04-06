@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace kunstgalerij.Migrations
 {
-    public partial class first : Migration
+    public partial class firstbuild : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -105,21 +105,6 @@ namespace kunstgalerij.Migrations
                     { 5, "landscape" },
                     { 6, "portrait" }
                 });
-
-            migrationBuilder.InsertData(
-                table: "Artworks",
-                columns: new[] { "ArtworkId", "ArtistId", "Imagename", "Price", "Title", "Year" },
-                values: new object[] { new Guid("4431b418-b5c2-48a2-a9ae-ee7de0730a11"), 1, null, 2, "artwork test", 1889 });
-
-            migrationBuilder.InsertData(
-                table: "Artworks",
-                columns: new[] { "ArtworkId", "ArtistId", "Imagename", "Price", "Title", "Year" },
-                values: new object[] { new Guid("2ee1a32e-b22e-4c3f-8d8e-3f00a6c012b4"), 1, null, 500000, "artwork test number 2", 1881 });
-
-            migrationBuilder.InsertData(
-                table: "Artworks",
-                columns: new[] { "ArtworkId", "ArtistId", "Imagename", "Price", "Title", "Year" },
-                values: new object[] { new Guid("6d4a9a3f-b944-408d-8c09-16b07732d368"), 2, null, 8000000, "artwork test number 3", 1996 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Artworks_ArtistId",

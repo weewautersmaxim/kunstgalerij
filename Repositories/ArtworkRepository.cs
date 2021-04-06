@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using kunstgalerij.DataContext;
 using kunstgalerij.Models;
@@ -9,9 +10,10 @@ namespace kunstgalerij.Repositories
 {
     public interface IArtworkRepository
     {
-        Task<List<Artwork>> GetArtwork();
+        Task<List<Artwork>> GetArtworks();
         Task<Artwork> AddArtwork(Artwork artwork);
         Task AddArtworkImage(Artwork artworkImage);
+        Task<List<Artwork>> GetArtwork(int artistId);
     }
 
     public class ArtworkRepository : IArtworkRepository
@@ -22,7 +24,7 @@ namespace kunstgalerij.Repositories
             _context = context;
         }
 
-        public async Task<List<Artwork>> GetArtwork()
+        public async Task<List<Artwork>> GetArtworks()
         {
             return await _context.Artworks.Include(s => s.CategoryArtworks).ThenInclude(s => s.Category).Include(s => s.artist).ToListAsync();
         }
@@ -38,6 +40,11 @@ namespace kunstgalerij.Repositories
         {
             await _context.Artworks.AddAsync(artworkImage);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<List<Artwork>> GetArtwork(int artistId)
+        {
+            return await _context.Artworks.Where(s => s.ArtistId == artistId).Include(s => s.CategoryArtworks).ThenInclude(s => s.Category).Include(s => s.artist).ToListAsync();
         }
     }
 }

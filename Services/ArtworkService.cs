@@ -13,8 +13,9 @@ namespace kunstgalerij.Services
 {
     public interface IArtworkService
     {
-        Task<List<ArtworkDTO>> GetArtwork();
+        Task<List<ArtworkDTO>> GetArtworks();
         Task<ArtworkAddDTO> AddArtwork(ArtworkAddDTO artwork);
+        Task<List<Artwork>> GetArtwork(int artistId);
     }
 
     public class ArtworkService : IArtworkService
@@ -30,9 +31,9 @@ namespace kunstgalerij.Services
             _blobService = blobService;
         }
 
-         public async Task<List<ArtworkDTO>> GetArtwork()
+         public async Task<List<ArtworkDTO>> GetArtworks()
         {
-            return _mapper.Map<List<ArtworkDTO>>(await _ArtworkRepository.GetArtwork());
+            return _mapper.Map<List<ArtworkDTO>>(await _ArtworkRepository.GetArtworks());
         }
         public async Task<ArtworkAddDTO> AddArtwork(ArtworkAddDTO artwork)
         {
@@ -52,6 +53,18 @@ namespace kunstgalerij.Services
                 newArtwork.Imagename = fileName;
 
                 return artwork;
+        }
+
+        public async Task<List<Artwork>> GetArtwork(int artistId){
+            try
+            {
+                return await _ArtworkRepository.GetArtwork(artistId);
+            }
+            catch (System.Exception ex)
+            {
+                
+                throw ex;
+            }
         }
     }
 }

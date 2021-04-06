@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "LkB6GoJQlaS0f8zJhdIYmiTl+DXMKk/rfw/ChgoAgmehGT51kmA5HdIb6siSJJNGKwj2JVNvGECOZ0M9W6y5tQ==",
+  "dgSpecHash": "cZqvnCX5HR8IaX021l9a/I9ZHLt1HkD/KUn9i780jU6/9XjtoDI19IjAFasRoLPAqyaZyyUn/ufgtIK6UXdsdQ==",
   "success": true,
-  "projectFilePath": "C:\\backend\\Project\\kunstgalerij\\kunstgalerij.csproj",
+  "projectFilePath": "c:\\backend\\Project\\kunstgalerij\\kunstgalerij.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\weewa\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\weewa\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",

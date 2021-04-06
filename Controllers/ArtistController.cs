@@ -36,16 +36,30 @@ namespace kunstgalerij.Controllers
         //artists
         [HttpGet]
         [Route("artists")]
-        public async Task<ActionResult<List<Artist>>> GetArtist()
+        public async Task<ActionResult<List<Artist>>> GetArtists()
         {
             try{
-                return new OkObjectResult(await _ArtistService.GetArtist());
+                return new OkObjectResult(await _ArtistService.GetArtists());
             }
             catch (Exception)
             {
                 return new StatusCodeResult(500);
             }
         }
+
+        [HttpGet]
+        [Route("artist/{name}")]
+        public async Task<ActionResult<List<Artist>>> GetArtist(string name)
+        {
+            try{
+                return new OkObjectResult(await _ArtistService.GetArtist(name));
+            }
+            catch (Exception)
+            {
+                return new StatusCodeResult(500);
+            }
+        }
+
         [HttpPost]
         [Route("artists")]
          public async Task<ActionResult<Artist>> AddArtist(Artist artist)
@@ -61,10 +75,23 @@ namespace kunstgalerij.Controllers
         //artworks
         [HttpGet]
         [Route("artworks")]
-        public async Task<ActionResult<List<ArtworkDTO>>> GetArtwork()
+        public async Task<ActionResult<List<ArtworkDTO>>> GetArtworks()
         {
             try{
-                return new OkObjectResult(await _ArtworkService.GetArtwork());
+                return new OkObjectResult(await _ArtworkService.GetArtworks());
+            }
+            catch (Exception)
+            {
+                return new StatusCodeResult(500);
+            }
+        }
+
+        [HttpGet]
+        [Route("artwork/{artistId}")]
+        public async Task<ActionResult<List<Artwork>>> GetArtwork(int artistId)
+        {
+            try{
+                return new OkObjectResult(await _ArtworkService.GetArtwork(artistId));
             }
             catch (Exception)
             {
