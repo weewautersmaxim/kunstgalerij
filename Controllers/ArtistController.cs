@@ -18,16 +18,18 @@ namespace kunstgalerij.Controllers
     {
         private readonly IArtistService _ArtistService;
         private readonly IArtworkService _ArtworkService;
+        private readonly ICategoryService _CategoryService;
         private readonly ILogger<ArtistController> _logger;
 
         //image test (ook in ctor)
         public static IWebHostEnvironment _environment;
 
-        public ArtistController(ILogger<ArtistController> logger,IArtistService ArtistService, IArtworkService ArtworkService, IWebHostEnvironment environment)
+        public ArtistController(ILogger<ArtistController> logger,IArtistService ArtistService, IArtworkService ArtworkService, ICategoryService CategoryService, IWebHostEnvironment environment)
         {
             _logger = logger;
             _ArtistService = ArtistService;
             _ArtworkService = ArtworkService;
+            _CategoryService = CategoryService;
             _environment = environment;
         }
 
@@ -78,6 +80,20 @@ namespace kunstgalerij.Controllers
                 return new OkObjectResult(await _ArtworkService.AddArtwork(artwork));
             }
             catch(Exception){
+                return new StatusCodeResult(500);
+            }
+        }
+
+        //categories
+        [HttpGet]
+        [Route("categories")]
+        public async Task<ActionResult<List<Category>>> GetCategory()
+        {
+            try{
+                return new OkObjectResult(await _CategoryService.GetCategory());
+            }
+            catch (Exception)
+            {
                 return new StatusCodeResult(500);
             }
         }

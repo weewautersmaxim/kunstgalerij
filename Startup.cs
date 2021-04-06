@@ -43,10 +43,13 @@ namespace kunstgalerij
             
             services.AddTransient<IArtworkRepository,ArtworkRepository>();
             services.AddTransient<IArtworkService,ArtworkService>();
+            
+            services.AddTransient<ICategoryRepository, CategoryRepository>();
+            services.AddTransient<ICategoryService, CategoryService>();
 
             services.AddTransient<IBlobService,BlobService>();
 
-
+            
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
