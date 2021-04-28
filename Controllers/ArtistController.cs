@@ -5,13 +5,15 @@ using System.Threading.Tasks;
 using kunstgalerij.DTO;
 using kunstgalerij.Models;
 using kunstgalerij.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace kunstgalerij.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api")]
     public class ArtistController : ControllerBase
@@ -33,6 +35,7 @@ namespace kunstgalerij.Controllers
             _environment = environment;
         }
 
+        [AllowAnonymous]
         //artists
         [HttpGet]
         [Route("artists")]
@@ -47,6 +50,7 @@ namespace kunstgalerij.Controllers
             }
         }
 
+        //deze wordt beveiligd door Client credentials
         [HttpGet]
         [Route("artist/{name}")]
         public async Task<ActionResult<List<Artist>>> GetArtist(string name)
@@ -59,7 +63,7 @@ namespace kunstgalerij.Controllers
                 return new StatusCodeResult(500);
             }
         }
-
+        [AllowAnonymous]
         [HttpPost]
         [Route("artists")]
          public async Task<ActionResult<Artist>> AddArtist(Artist artist)
@@ -73,6 +77,7 @@ namespace kunstgalerij.Controllers
         }
 
         //artworks
+        [AllowAnonymous]
         [HttpGet]
         [Route("artworks")]
         public async Task<ActionResult<List<ArtworkDTO>>> GetArtworks()
@@ -86,6 +91,7 @@ namespace kunstgalerij.Controllers
             }
         }
 
+        //deze wordt beveiligd door client credentials
         [HttpGet]
         [Route("artwork/{artistId}")]
         public async Task<ActionResult<List<Artwork>>> GetArtwork(int artistId)
@@ -99,6 +105,7 @@ namespace kunstgalerij.Controllers
             }
         }
 
+        [AllowAnonymous]
         [HttpPost]
         [Route("artworks")]
         public async Task<ActionResult<ArtworkAddDTO>> AddArtwork(ArtworkAddDTO artwork)
@@ -112,6 +119,7 @@ namespace kunstgalerij.Controllers
         }
 
         //categories
+        [AllowAnonymous]
         [HttpGet]
         [Route("categories")]
         public async Task<ActionResult<List<Category>>> GetCategory()

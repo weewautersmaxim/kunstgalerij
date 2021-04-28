@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using kunstgalerij.DataContext;
 using kunstgalerij.Repositories;
 using kunstgalerij.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -49,6 +50,13 @@ namespace kunstgalerij
 
             services.AddTransient<IBlobService,BlobService>();
 
+             services.AddAuthentication(options => {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options => {
+                options.Authority = "https://maximweewauters.eu.auth0.com/";
+                options.Audience = "https://kunstgalerij";
+            });
             
 
             services.AddControllers();
@@ -72,6 +80,7 @@ namespace kunstgalerij
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
