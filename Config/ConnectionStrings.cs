@@ -1,5 +1,3 @@
-using System;
-
 namespace Sneakers.API.Config
 {
   public class ConnectionStrings

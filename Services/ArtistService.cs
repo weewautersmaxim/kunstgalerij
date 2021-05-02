@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -25,7 +24,6 @@ namespace kunstgalerij.Services
             _mapper = mapper;
             _ArtistRepository = ArtistRepository;
         }
-        //opt moment gwn doorgeven (delete this later), moet nog toevoegen van artisten kunnen doen
         public async Task<List<ArtistDTO>> GetArtists()
         {
             return _mapper.Map<List<ArtistDTO>>(await _ArtistRepository.GetArtists());

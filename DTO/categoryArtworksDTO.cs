@@ -1,6 +1,3 @@
-using System;
-using kunstgalerij.Models;
-
 namespace kunstgalerij.DTO
 {
     public class CategoryArtworksDTO

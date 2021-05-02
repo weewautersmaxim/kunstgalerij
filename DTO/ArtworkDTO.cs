@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using kunstgalerij.Models;
 
 namespace kunstgalerij.DTO
 {
