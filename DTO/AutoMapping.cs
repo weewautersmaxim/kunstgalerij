@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using AutoMapper;
 using kunstgalerij.DTO;
 using kunstgalerij.Models;

@@ -1,12 +1,9 @@
-using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Threading.Tasks;
 using AutoMapper;
 using kunstgalerij.DTO;
 using kunstgalerij.Models;
 using kunstgalerij.Repositories;
-using Microsoft.AspNetCore.Http;
 using Sneakers.API.Services;
 
 namespace kunstgalerij.Services
